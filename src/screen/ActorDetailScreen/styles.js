@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { black, darkGray } from './../../constants/Color'
+import { black, darkGray } from '../../constants/Color'
 import { WIDTH, HEIGHT } from "../../constants/Layout";
 
 const styles = StyleSheet.create({

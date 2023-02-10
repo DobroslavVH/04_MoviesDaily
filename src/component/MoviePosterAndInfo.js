@@ -9,13 +9,41 @@ const MoviePosterAndInfo = ({ data, navigation, type }) => {
 
     const renderMovieGenres = (genreId = []) => {
         const genresName = genreId.map((item) => genres[item.toString()].name)
+        const renderSingleGenre = (item) => {
+            return (
+                <View style={styles.genresItemContainer}>
+                    <Text style={styles.genresText}>{item}</Text>
+                </View>
+            )
+        }
+        const renderEmptyGenre = () => {
+            return (
+                <View>
+                    <Text>...</Text>
+                </View>
+            )
+        }
         return (
             <View style={styles.genresContainer}>
-                {genresName.map((item) =>
-                    <View style={styles.genresItemContainer}>
-                        <Text style={styles.genresText}>{item}</Text>
-                    </View>
-                )}
+                {genresName.length !== 0
+                    ? genresName.map((item) =>
+                        renderSingleGenre(item)
+                    )
+                    : renderEmptyGenre()
+                }
+            </View>
+        )
+    }
+
+    const renderMovieRating = (data) => {
+        return (
+            <View>
+                {data !== 0
+                    ? <MovieRating rating={data} color={black} />
+                    : (<View>
+                        <Text>0.0</Text>
+                    </View>)
+                }
             </View>
         )
     }
@@ -40,7 +68,7 @@ const MoviePosterAndInfo = ({ data, navigation, type }) => {
                         >
                             {data.title}
                         </Text>
-                        <MovieRating rating={data?.vote_average} color={black} />
+                        {renderMovieRating(data?.vote_average)}
                         {renderMovieGenres(data?.genre_ids)}
                     </View>
                 </View>

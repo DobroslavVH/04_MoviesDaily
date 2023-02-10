@@ -27,6 +27,17 @@ const MovieListScreen = ({ route, navigation }) => {
         return <CustomHeader color={black} backgroundColor={white} title={title} type={type === "tv" ? "TV Show" : "Movies"} />
     }
 
+    const renderItem = ({ item }) => {
+        return (
+            <MoviePosterAndInfo
+                shadow={true}
+                data={item}
+                navigation={navigation}
+                type={type}
+            />
+        )
+    }
+
     const renderFooterComponent = () => {
         return (
             <View style={{ height: getStatusBarHeight() * 2.5 }} />
@@ -36,18 +47,13 @@ const MovieListScreen = ({ route, navigation }) => {
     const renderMovieList = () => {
         return (
             <FlatList
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index}
                 keyboardShouldPersistTaps={'handled'}
                 data={data}
                 contentContainerStyle={{ marginVertical: 8 }}
                 onEndReached={onEndReached}
                 onEndReachedThreshold={0.9}
-                renderItem={({ item }) => <MoviePosterAndInfo
-                    shadow={true}
-                    data={item}
-                    navigation={navigation}
-                    type={type}
-                />}
+                renderItem={(item) => renderItem(item)}
                 ListFooterComponent={() => renderFooterComponent()}
             />
         )

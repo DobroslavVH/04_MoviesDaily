@@ -9,7 +9,7 @@ import SearchScreen from '../screen/SearchScreen/SearchScreen'
 import FullScreenImage from "../screen/FullScreenImage/FullScreenImage";
 
 import HomeDrawerNavigator from './HomeDrawerNavigator'
-import ActorDetailScreen from "../screen/ActorDetailScreen.js/ActorDetailScreen";
+import ActorDetailScreen from "../screen/ActorDetailScreen/ActorDetailScreen";
 
 
 const Stack = createStackNavigator()

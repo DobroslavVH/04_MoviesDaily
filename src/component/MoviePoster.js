@@ -1,11 +1,27 @@
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, StyleSheet, TouchableWithoutFeedback, Text } from 'react-native'
 import React from 'react'
 import FastImage from 'react-native-fast-image'
 import { getImageUrl } from '../api/url'
 import { black, white } from '../constants/Color'
 import { WIDTH } from '../constants/Layout'
+import NoImageView from '../component/NoImageView'
 
 const MoviePoster = ({ item, navigation, type, height = (WIDTH / 2.2), width = (WIDTH / 3.5), shadow }) => {
+
+    const renderImage = () => {
+        return (
+            <View>
+                {item.poster_path !== null
+                    ? <FastImage style={[styles.image, { width: width, height: height }]} resizeMode='cover' source={getImageUrl(item.poster_path)} />
+                    : (<View style={[styles.image, { width: width, height: height, justifyContent: 'center', alignItems: 'center' }]}>
+                        {/* no image view */}
+                        <NoImageView />
+                    </View>
+                    )
+                }
+            </View>
+        )
+    }
     return (
         <TouchableWithoutFeedback
             onPress={() => {
@@ -17,7 +33,7 @@ const MoviePoster = ({ item, navigation, type, height = (WIDTH / 2.2), width = (
             }}
         >
             <View style={[styles.imageContainer, { width: width, height: height }, shadow && styles.imageShadow]}>
-                <FastImage style={[styles.image, { width: width, height: height }]} resizeMode='cover' source={getImageUrl(item.poster_path)} />
+                {renderImage()}
             </View>
 
         </TouchableWithoutFeedback>
