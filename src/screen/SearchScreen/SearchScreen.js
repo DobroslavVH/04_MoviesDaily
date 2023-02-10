@@ -46,6 +46,11 @@ const SearchScreen = ({ route }) => {
             </View>
         )
     }
+    const renderItem = (item, index) => {
+        return (
+            <MoviePosterAndInfo data={item.item} navigation={navigation} type={type} />
+        )
+    }
 
     const renderMovies = () => {
         return (
@@ -54,7 +59,7 @@ const SearchScreen = ({ route }) => {
                     (<FlatList
                         data={moviesData?.results}
                         keyExtractor={(item, index) => index}
-                        renderItem={(item) => <MoviePosterAndInfo data={item.item} navigation={navigation} type={type} />}
+                        renderItem={(item, index) => renderItem(item, index)}
                         bounces={false}
                         showsVerticalScrollIndicator={false}
                     />)

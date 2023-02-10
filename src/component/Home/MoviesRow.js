@@ -26,7 +26,7 @@ const MoviesRow = ({ data, title, navigation, type }) => {
                         type={type}
                     />
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index}
                 style={{ margin: 8, marginTop: 4 }}
                 showsHorizontalScrollIndicator={false}
             />
