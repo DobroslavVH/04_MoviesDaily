@@ -6,7 +6,7 @@ import MovieRating from './MovieDetail/MovieRating'
 import { black, darkGray, white } from '../constants/Color'
 
 const MoviePosterAndInfo = ({ data, navigation, type }) => {
-
+    console.log(data)
     const renderMovieGenres = (genreId = []) => {
         const genresName = genreId.map((item) => genres[item.toString()].name)
         const renderSingleGenre = (item) => {
@@ -66,7 +66,7 @@ const MoviePosterAndInfo = ({ data, navigation, type }) => {
                             numberOfLines={2}
                             style={{ fontSize: 16, marginBottom: 10, fontWeight: 'bold' }}
                         >
-                            {data.title}
+                            {data.title || data.name}
                         </Text>
                         {renderMovieRating(data?.vote_average)}
                         {renderMovieGenres(data?.genre_ids)}
